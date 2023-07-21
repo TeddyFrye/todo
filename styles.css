@@ -1,0 +1,20 @@
+.todo-title {
+    font-size: 1.2em;
+}
+
+.todo-dueDate {
+    font-weight: bold;
+    color: #ff0000; /* This will make due dates appear in red */
+}
+
+.todo-priority-high {
+    color: #ff0000; /* High priority items will have red titles */
+}
+
+.todo-priority-medium {
+    color: #ffa500; /* Medium priority items will have orange titles */
+}
+
+.todo-priority-low {
+    color: #008000; /* Low priority items will have green titles */
+}
