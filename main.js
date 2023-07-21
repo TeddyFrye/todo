@@ -12,6 +12,10 @@ window.onload = function () {
   // Load projects from storage
   let projects = getAllProjects();
 
+  //test adding a new project
+
+  let myNewProject = addNewProject("my special little Project Title");
+
   // Render each project
   projects.forEach((project) => {
     renderProject(project);

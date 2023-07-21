@@ -43,3 +43,10 @@ function editProject(project, title) {
 function deleteProject(project) {
   // ADD CODE HERE TO DELETE THE PROJECT
 }
+
+function addNewProject(title) {
+  let newProject = createProject(title);
+  storeProject(newProject);
+  renderProject(newProject);
+  return newProject;
+}

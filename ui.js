@@ -9,6 +9,9 @@ function renderTodo(todo) {
 
   // Set the content of the title and dueDate element
   titleElement.textContent = todo.getTitle();
+  titleElement.className = `todo-title todo-priority-${todo
+    .getPriority()
+    .toLowerCase()}`;
   dueDateElement.textContent = todo.getDueDate();
 
   // Append the title and dueDate element to the todoDiv

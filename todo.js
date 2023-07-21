@@ -72,3 +72,10 @@ function editTodo(todo, title, description, dueDate, priority) {
 function deleteTodo(todo) {
   // ADD CODE TO DELETE THE TODO
 }
+
+function addNewTodoToProject(project, title, description, dueDate, priority) {
+  let newTodo = createTodo(title, description, dueDate, priority);
+  project.addTodo(newTodo);
+  storeProject(project);
+  renderProject(project);
+}
