@@ -1,20 +1,35 @@
 .todo-title {
     font-size: 1.2em;
+    color: red;
 }
-
+/* TODO Stylings*/
 .todo-dueDate {
     font-weight: bold;
-    color: #ff0000; /* This will make due dates appear in red */
+    color: #ff0000;
 }
 
 .todo-priority-high {
-    color: #ff0000; /* High priority items will have red titles */
+    color: #ff0000; 
 }
-
 .todo-priority-medium {
-    color: #ffa500; /* Medium priority items will have orange titles */
+    color: #ffa500; 
 }
 
 .todo-priority-low {
-    color: #008000; /* Low priority items will have green titles */
+    color: #008000; 
 }
+
+/* Container Stylings*/
+#app-container {
+    display: flex;
+}
+
+#project-container {
+    width: 25%;
+    border-right: 1px solid #000;
+}
+  
+#todo-container {
+    width: 75%;
+}
+  
