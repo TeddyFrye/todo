@@ -1,3 +1,5 @@
+let currentProjectTitle = "Default"; // initially set to default project
+
 class Todo {
   constructor(title, description, dueDate, priority) {
     this.title = title;
@@ -84,9 +86,19 @@ function clearTodoInputFields() {
 }
 
 function addNewTodoToProject(project, title, description, dueDate, priority) {
+  console.log("Current project title:", currentProjectTitle); // log the current project title
   let newTodo = createTodo(title, description, dueDate, priority);
-  project.addTodo(newTodo);
-  storeProject(project);
-  renderProject(project);
+  let currentProject = getProject(`project-${currentProjectTitle}`); // get current project from storage
+  console.log("Current project:", currentProject); // log the current project
+
+  if (currentProject) {
+    // check if currentProject is not null
+    currentProject.addTodo(newTodo); // add new todo to current project
+    storeProject(currentProject); // store the updated project
+    renderProject(currentProject); // re-render the updated project
+  } else {
+    console.error("Could not find project with title:", currentProjectTitle);
+  }
+  renderProject(currentProject);
   clearTodoInputFields();
 }

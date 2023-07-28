@@ -86,6 +86,8 @@ window.renderProject = function (project) {
     let detailsDiv = document.getElementById("todo-container");
     detailsDiv.innerHTML = "";
 
+    currentProjectTitle = project.getTitle();
+
     project.getTodos().forEach((todo) => {
       let todoElement = document.createElement("p");
       todoElement.textContent = `${todo.getTitle()} - ${todo.getDueDate()} - ${todo.getPriority()}`;
