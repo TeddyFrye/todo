@@ -55,3 +55,9 @@ function getAllProjects() {
 
   return projects;
 }
+
+//Delete project from storage
+window.deleteProjectFromStorage = function (title) {
+  // Use the localStorage.removeItem method to delete the project from storage
+  localStorage.removeItem(title);
+};

@@ -21,54 +21,56 @@ function renderTodo(todo) {
   // Append the todoDiv to the todo container in your HTML
   document.querySelector("#todo-container").appendChild(todoDiv);
 }
+
 window.renderProject = function (project) {
-  // This function will be used to render a project
-  function renderProject(project) {
-    let projectContainer = document.getElementById("project-container");
+  // Declare projectDiv here
+  let projectDiv = document.createElement("div");
 
-    // Create a new div to contain the project
-    let projectDiv = document.createElement("div");
-    projectDiv.classList.add("project"); // Add a class to the projectDiv
-    projectDiv.textCoontent = project.getTitle(); // Set the content of the projectDiv
+  // Add class and click event listener to projectDiv
+  projectDiv.classList.add("project");
+  projectDiv.textContent = project.getTitle();
 
-    // Add a click event listener to the projectDiv
-    projectDiv.addEventListener("click", function () {
-      // Fix this line
-      let detailsDiv = document.getElementById("project-details");
+  projectDiv.addEventListener("click", function () {
+    let detailsDiv = document.getElementById("todo-container");
+    detailsDiv.innerHTML = "";
 
-      // First, clear out any previous details
-      detailsDiv.innerHTML = "";
-
-      // Create and append new elements for each piece of detail
-      let titleElement = document.createElement("h2");
-      titleElement.textContent = project.getTitle();
-      detailsDiv.appendChild(titleElement);
-
-      // Iterate over each todo in the project and display its details
-      project.getTodos().forEach((todo) => {
-        let todoElement = document.createElement("p");
-        todoElement.textContent = `${todo.getTitle()} - ${todo.getDueDate()} - ${todo.getPriority()}`;
-        detailsDiv.appendChild(todoElement);
-      });
-    }); // And fix this line
-
-    // Create a title element
-    let titleElement = document.createElement("h2");
-
-    // Set the content of the title element
-    titleElement.textContent = project.getTitle();
-
-    // Append the title element to the projectDiv
-    projectDiv.appendChild(titleElement);
-
-    // Render each todo in the project
     project.getTodos().forEach((todo) => {
-      renderTodo(todo);
+      let todoElement = document.createElement("p");
+      todoElement.textContent = `${todo.getTitle()} - ${todo.getDueDate()} - ${todo.getPriority()}`;
+      detailsDiv.appendChild(todoElement);
     });
+  });
 
-    // Append the projectDiv to the project container in your HTML
-    document.querySelector("#project-container").appendChild(projectDiv);
-  }
+  // Create and append title element to projectDiv
+  let titleElement = document.createElement("h2");
+  titleElement.textContent = project.getTitle();
+  projectDiv.appendChild(titleElement);
+
+  // Render each todo in the project
+  project.getTodos().forEach((todo) => {
+    renderTodo(todo);
+  });
+
+  // Append the projectDiv to the project container in your HTML
+  document.querySelector("#project-container").appendChild(projectDiv);
+
+  // Create a Delete button for the project
+  let deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete Project";
+
+  // Attach a click event listener to the delete button
+  deleteButton.addEventListener("click", function (e) {
+    e.stopPropagation(); // Prevent the project click event from triggering
+
+    // Call the function to delete the project
+    deleteProjectFromStorage(project.getTitle());
+
+    // Remove the project div from the DOM
+    projectDiv.remove();
+  });
+
+  // Append the delete button to the project div
+  projectDiv.appendChild(deleteButton);
 };
 
 // This function will be used to get user input from a form
