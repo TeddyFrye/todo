@@ -1,19 +1,7 @@
 window.onload = function () {
-  // Create instances of Project and Todo
-  let myProject = new Project("My Project");
-  let myTodo = new Todo("My Todo", "Some description", "2023-07-22", "High");
-
-  // Add the Todo to the Project
-  myProject.addTodo(myTodo);
-
-  // Store the project
-  storeProject(myProject);
-
-  // Load projects from storage
-  let projects = getAllProjects();
-
-  // Render each project
-  projects.forEach((project) => {
+  let activeProject = null;
+  // Fetch projects from storage and render each of them
+  getAllProjects().forEach((project) => {
     renderProject(project);
   });
 
@@ -30,14 +18,41 @@ window.onload = function () {
   let addTodoButton = document.getElementById("add-todo");
   addTodoButton.addEventListener("click", function () {
     let todoTitle = document.querySelector('input[name="todo-title"]').value;
-    // Assuming that you're always adding the todo to the first project for simplicity
-    let project = getAllProjects()[0];
-    addNewTodoToProject(
-      project,
-      todoTitle,
-      "Some description",
-      "2023-07-22",
-      "High"
-    );
+
+    if (activeProject) {
+      addNewTodoToProject(
+        activeProject,
+        todoTitle,
+        "Some description",
+        "2023-07-22",
+        "High"
+      );
+    } else {
+      alert("Please select a project first.");
+    }
   });
+
+  // Add event listener for each project
+  document
+    .querySelector("#project-container")
+    .addEventListener("click", function (e) {
+      if (e.target.classList.contains("project")) {
+        let clickedProjectTitle = e.target.textContent;
+        let clickedProject = getAllProjects().find(
+          (proj) => proj.title === clickedProjectTitle
+        );
+
+        // Update the current project title
+        window.currentProjectTitle = clickedProject.title;
+
+        // Clear the todo container
+        let todoContainer = document.getElementById("todo-container");
+        todoContainer.innerHTML = "";
+
+        // Render todos of the clicked project
+        clickedProject.todos.forEach((todo) => {
+          renderTodo(todo);
+        });
+      }
+    });
 };
