@@ -24,9 +24,15 @@ function renderTodo(todo) {
 
 // This function will be used to render a project
 function renderProject(project) {
+  let projectContainer = document.getElementById('project-container');
+  
   // Create a new div to contain the project
   let projectDiv = document.createElement("div");
+  projectDiv.classList.add('project'); // Add a class to the projectDiv
+  projectDiv.textCoontent = project.getTitle(); // Set the content of the projectDiv
 
+  // Add a click event listener to the projectDiv
+  projectDiv.addEventListener('click', function() {
   // Create a title element
   let titleElement = document.createElement("h2");
 
