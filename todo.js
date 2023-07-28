@@ -68,9 +68,19 @@ function editTodo(todo, title, description, dueDate, priority) {
   todo.setDueDate(dueDate);
   todo.setPriority(priority);
 }
+function clearTodoInputFields() {
+  let todoTitle = document.querySelector('input[name="todo-title"]');
+  let todoDescription = document.querySelector(
+    'input[name="todo-description"]'
+  );
+  let todoDueDate = document.querySelector('input[name="todo-due-date"]');
+  let todoPriority = document.querySelector('input[name="todo-priority"]');
 
-function deleteTodo(todo) {
-  // ADD CODE TO DELETE THE TODO
+  // clear all input fields
+  todoTitle.value = "";
+  todoDescription.value = "";
+  todoDueDate.value = "";
+  todoPriority.value = "";
 }
 
 function addNewTodoToProject(project, title, description, dueDate, priority) {
@@ -78,5 +88,5 @@ function addNewTodoToProject(project, title, description, dueDate, priority) {
   project.addTodo(newTodo);
   storeProject(project);
   renderProject(project);
-  document.querySelector('input[name="todo-title"]').value = "";
+  clearTodoInputFields();
 }
