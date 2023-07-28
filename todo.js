@@ -78,4 +78,5 @@ function addNewTodoToProject(project, title, description, dueDate, priority) {
   project.addTodo(newTodo);
   storeProject(project);
   renderProject(project);
+  document.querySelector('input[name="todo-title"]').value = "";
 }
