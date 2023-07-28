@@ -86,19 +86,12 @@ function clearTodoInputFields() {
 }
 
 function addNewTodoToProject(project, title, description, dueDate, priority) {
-  console.log("Current project title:", currentProjectTitle); // log the current project title
   let newTodo = createTodo(title, description, dueDate, priority);
-  let currentProject = getProject(`project-${currentProjectTitle}`); // get current project from storage
-  console.log("Current project:", currentProject); // log the current project
+  project.addTodo(newTodo);
+  storeProject(project);
 
-  if (currentProject) {
-    // check if currentProject is not null
-    currentProject.addTodo(newTodo); // add new todo to current project
-    storeProject(currentProject); // store the updated project
-    renderProject(currentProject); // re-render the updated project
-  } else {
-    console.error("Could not find project with title:", currentProjectTitle);
-  }
-  renderProject(currentProject);
+  // Render only the new todo
+  renderTodo(newTodo);
+
   clearTodoInputFields();
 }

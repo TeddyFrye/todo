@@ -3,9 +3,10 @@ function storeProject(project) {
   if (Array.isArray(project)) {
     console.error("Attempted to store an array as a project:", project);
   } else {
-    const key = `project-${project.getTitle()}`; // Added project- prefix
-    console.log("Storing project:", project);
-    localStorage.setItem(key, JSON.stringify(project));
+    const projects = getAllProjects(); // Retrieve all existing projects
+    projects.push(project); // Add the new project to the existing projects array
+    console.log("Storing projects:", projects);
+    localStorage.setItem("projects", JSON.stringify(projects)); // Store the entire projects array
   }
 }
 
@@ -52,22 +53,34 @@ function storeAllProjects(projects) {
 
 // Retrieve all projects
 function getAllProjects() {
-  let projects = [];
+  let projects = localStorage.getItem("projects"); // Get the projects array
+  if (projects) {
+    projects = JSON.parse(projects);
+    console.log("Retrieved projects:", projects);
 
-  const keys = Object.keys(localStorage).filter((key) =>
-    key.startsWith("project-")
-  ); // Filter keys that start with project-
+    // Since localStorage won't keep the methods of the stored objects, you'll need to recreate them as Projects
+    const recreatedProjects = projects.map((project) => {
+      let newProject = new Project(project.title);
 
-  keys.forEach((key) => {
-    let project = getProject(key);
-    if (project) {
-      projects.push(project);
-    }
-  });
+      // And you'll need to recreate each todo as a Todo
+      project.todos.forEach((todo) => {
+        let newTodo = new Todo(
+          todo.title,
+          todo.description,
+          todo.dueDate,
+          todo.priority
+        );
+        newProject.addTodo(newTodo);
+      });
 
-  return projects;
+      return newProject;
+    });
+
+    return recreatedProjects;
+  }
+
+  return []; // If there are no projects in localStorage, return an empty array
 }
-
 //Delete project from storage
 window.deleteProjectFromStorage = function (title) {
   // Use the localStorage.removeItem method to delete the project from storage
