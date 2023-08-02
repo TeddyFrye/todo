@@ -1,7 +1,6 @@
 let projects = [];
-
+let activeProject = null;
 window.onload = function () {
-  let activeProject = null;
   // Fetch projects from storage and render each of them
   projects.forEach((project) => {
     renderProject(project);
@@ -40,19 +39,16 @@ window.onload = function () {
     .addEventListener("click", function (e) {
       if (e.target.classList.contains("project")) {
         let clickedProjectTitle = e.target.textContent;
-        let clickedProject = getAllProjects().find(
-          (proj) => proj.title === clickedProjectTitle
+        activeProject = projects.find(
+          (proj) => proj.getTitle() === clickedProjectTitle
         );
-
-        // Update the current project title
-        window.currentProjectTitle = clickedProject.title;
 
         // Clear the todo container
         let todoContainer = document.getElementById("todo-container");
         todoContainer.innerHTML = "";
 
         // Render todos of the clicked project
-        clickedProject.todos.forEach((todo) => {
+        activeProject.getTodos().forEach((todo) => {
           renderTodo(todo);
         });
       }

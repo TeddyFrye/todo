@@ -80,13 +80,20 @@ window.renderProject = function (project) {
     let detailsDiv = document.getElementById("todo-container");
     detailsDiv.innerHTML = "";
 
-    currentProjectTitle = project.getTitle();
+    // Update activeProject variable from main.js
+    activeProject = project;
 
     project.getTodos().forEach((todo) => {
       let todoElement = document.createElement("p");
       todoElement.textContent = `${todo.getTitle()} - ${todo.getDueDate()} - ${todo.getPriority()}`;
       detailsDiv.appendChild(todoElement);
     });
+    // New code to select the text in titleElement
+    let range = document.createRange();
+    range.selectNodeContents(titleElement);
+    let sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
   });
 
   // Create and append title element to projectDiv
