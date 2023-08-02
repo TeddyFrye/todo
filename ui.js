@@ -92,15 +92,30 @@ window.renderProject = function (project) {
   // Create and append title element to projectDiv
   let titleElement = document.createElement("h2");
   titleElement.textContent = project.getTitle();
-  titleElement.contentEditable = "true";
+  titleElement.contentEditable = "false"; // Change this to false
 
-  // Add an event listener for 'keypress'
-  titleElement.addEventListener("keypress", function (e) {
-    // Check if the key pressed was 'Enter'
+  // Declare a keypress handler
+  const handleKeypress = function (e) {
     if (e.key === "Enter") {
       e.preventDefault(); // Prevent the default action
       project.setTitle(e.target.textContent); // Update the project title
+      titleElement.contentEditable = "false"; // Make content uneditable
+      updateProjectInStorage(project); // update the project in local storage.
+      titleElement.removeEventListener("keypress", handleKeypress); // Remove the keypress event listener
     }
+  };
+
+  // Add an event listener for 'dblclick'
+  titleElement.addEventListener("dblclick", function (e) {
+    e.stopPropagation(); // Prevent the project click event from triggering again
+    // Allow the content to be editable
+    titleElement.contentEditable = "true";
+
+    // Focus on the element to immediately allow typing
+    titleElement.focus();
+
+    // Add the keypress event listener
+    titleElement.addEventListener("keypress", handleKeypress);
   });
 
   projectDiv.appendChild(titleElement);
