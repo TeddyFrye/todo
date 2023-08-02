@@ -1,3 +1,4 @@
+/* COMMENTED OUT FOR NOW
 // Store a project
 function storeProject(project) {
   if (Array.isArray(project)) {
@@ -87,3 +88,4 @@ window.deleteProjectFromStorage = function (title) {
   const key = `project-${title}`; // Added project- prefix
   localStorage.removeItem(key);
 };
+*/

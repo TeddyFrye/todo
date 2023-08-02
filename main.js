@@ -1,7 +1,9 @@
+let projects = [];
+
 window.onload = function () {
   let activeProject = null;
   // Fetch projects from storage and render each of them
-  getAllProjects().forEach((project) => {
+  projects.forEach((project) => {
     renderProject(project);
   });
 

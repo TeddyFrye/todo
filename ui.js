@@ -1,8 +1,3 @@
-// Check if 'projects' is not already set in localStorage
-if (!localStorage.getItem("projects")) {
-  // Set 'projects' to an empty array
-  localStorage.setItem("projects", JSON.stringify([]));
-}
 // This function will be used to render a single todo
 function renderTodo(todo) {
   // Create a new div to contain the todo
@@ -28,7 +23,6 @@ function renderTodo(todo) {
       todo.setTitle(e.target.textContent); // Update the todo title
       let projectTitle =
         e.target.parentElement.parentElement.querySelector("h2").textContent;
-      updateTodoInStorage(todo, projectTitle); // Update the todo in the storage
     }
   });
 
@@ -106,7 +100,6 @@ window.renderProject = function (project) {
     if (e.key === "Enter") {
       e.preventDefault(); // Prevent the default action
       project.setTitle(e.target.textContent); // Update the project title
-      updateProjectInStorage(project); // Update the project in the storage
     }
   });
 

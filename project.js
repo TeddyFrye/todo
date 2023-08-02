@@ -46,7 +46,7 @@ function deleteProject(project) {
 
 function addNewProject(title) {
   let newProject = createProject(title);
-  storeProject(newProject);
+  projects.push(newProject);
   renderProject(newProject);
   document.querySelector('input[name="project-title"]').value = "";
   return newProject;
