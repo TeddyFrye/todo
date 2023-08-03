@@ -33,40 +33,6 @@ function renderTodo(todo) {
   // Append the todoDiv to the todo container in your HTML
   document.querySelector("#todo-container").appendChild(todoDiv);
 }
-function updateProjectInStorage(updatedProject) {
-  // Get all projects from storage
-  let projects = JSON.parse(localStorage.getItem("projects"));
-
-  // Find the index of the project to update
-  let index = projects.findIndex(
-    (project) => project.title === updatedProject.getTitle()
-  );
-
-  // Replace the old project with the updated one
-  projects[index] = updatedProject;
-
-  // Store the updated projects array back in storage
-  localStorage.setItem("projects", JSON.stringify(projects));
-}
-
-function updateTodoInStorage(updatedTodo, projectTitle) {
-  // Get all projects from storage
-  let projects = JSON.parse(localStorage.getItem("projects"));
-
-  // Find the index of the project this todo belongs to
-  let projectIndex = projects.findIndex((proj) => proj.title === projectTitle);
-
-  // Find the index of the todo to update in the project's todos array
-  let todoIndex = projects[projectIndex].todos.findIndex(
-    (todo) => todo.title === updatedTodo.getTitle()
-  );
-
-  // Replace the old todo with the updated one
-  projects[projectIndex].todos[todoIndex] = updatedTodo;
-
-  // Store the updated projects array back in storage
-  localStorage.setItem("projects", JSON.stringify(projects));
-}
 
 window.renderProject = function (project) {
   // Declare projectDiv here
@@ -107,7 +73,6 @@ window.renderProject = function (project) {
       e.preventDefault(); // Prevent the default action
       project.setTitle(e.target.textContent); // Update the project title
       titleElement.contentEditable = "false"; // Make content uneditable
-      updateProjectInStorage(project); // update the project in local storage.
       titleElement.removeEventListener("keypress", handleKeypress); // Remove the keypress event listener
     }
   };
@@ -142,9 +107,6 @@ window.renderProject = function (project) {
   // Attach a click event listener to the delete button
   deleteButton.addEventListener("click", function (e) {
     e.stopPropagation(); // Prevent the project click event from triggering
-
-    // Call the function to delete the project
-    deleteProjectFromStorage(project.getTitle());
 
     // Remove the project div from the DOM
     projectDiv.remove();

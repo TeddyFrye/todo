@@ -1,7 +1,6 @@
 let projects = [];
 let activeProject = null;
 window.onload = function () {
-  // Fetch projects from storage and render each of them
   projects.forEach((project) => {
     renderProject(project);
   });
@@ -19,14 +18,23 @@ window.onload = function () {
   let addTodoButton = document.getElementById("add-todo");
   addTodoButton.addEventListener("click", function () {
     let todoTitle = document.querySelector('input[name="todo-title"]').value;
+    let todoDescription = document.querySelector(
+      'input[name="todo-description"]'
+    ).value;
+    let todoDueDate = document.querySelector(
+      'input[name="todo-due-date"]'
+    ).value;
+    let todoPriority = document.querySelector(
+      'input[name="todo-priority"]'
+    ).value;
 
     if (activeProject) {
       addNewTodoToProject(
         activeProject,
         todoTitle,
-        "Some description",
-        "2023-07-22",
-        "High"
+        todoDescription,
+        todoDueDate,
+        todoPriority
       );
     } else {
       alert("Please select a project first.");
