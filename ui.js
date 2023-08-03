@@ -19,16 +19,43 @@ function renderTodo(todo) {
   priorityElement.textContent = todo.getPriority();
   descriptionElement.textContent = todo.getDescription();
 
-  // Add an event listener for 'keypress'
-  titleElement.addEventListener("keypress", function (e) {
-    // Check if the key pressed was 'Enter'
-    if (e.key === "Enter") {
-      e.preventDefault(); // Prevent the default action
-      todo.setTitle(e.target.textContent); // Update the todo title
-      let projectTitle =
-        e.target.parentElement.parentElement.querySelector("h2").textContent;
+  [titleElement, descriptionElement, dueDateElement, priorityElement].forEach(
+    (el, index) => {
+      el.addEventListener("click", function (e) {
+        if (e.detail === 3) {
+          // check if the element was clicked 3 times
+          e.target.contentEditable = "true";
+          e.target.focus(); // focus on the element to immediately allow typing
+        }
+      });
+
+      el.addEventListener("blur", function (e) {
+        e.target.contentEditable = "false";
+      });
+
+      el.addEventListener("keypress", function (e) {
+        // Check if the key pressed was 'Enter'
+        if (e.key === "Enter") {
+          e.preventDefault(); // Prevent the default action
+          switch (index) {
+            case 0: // Title
+              todo.setTitle(e.target.textContent);
+              break;
+            case 1: // Description
+              todo.setDescription(e.target.textContent);
+              break;
+            case 2: // DueDate
+              todo.setDueDate(e.target.textContent);
+              break;
+            case 3: // Priority
+              todo.setPriority(e.target.textContent);
+              break;
+          }
+          e.target.blur(); // remove focus, triggering the blur event
+        }
+      });
     }
-  });
+  );
 
   // Append the title and dueDate element to the todoDiv
   todoDiv.appendChild(titleElement);
