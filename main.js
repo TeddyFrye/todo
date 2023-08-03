@@ -45,20 +45,13 @@ window.onload = function () {
   document
     .querySelector("#project-container")
     .addEventListener("click", function (e) {
-      if (e.target.classList.contains("project")) {
-        let clickedProjectTitle = e.target.textContent;
-        activeProject = projects.find(
-          (proj) => proj.getTitle() === clickedProjectTitle
-        );
+      // Clear the todo container
+      let todoContainer = document.getElementById("todo-container");
+      todoContainer.innerHTML = "";
 
-        // Clear the todo container
-        let todoContainer = document.getElementById("todo-container");
-        todoContainer.innerHTML = "";
-
-        // Render todos of the clicked project
-        activeProject.getTodos().forEach((todo) => {
-          renderTodo(todo);
-        });
-      }
+      // Render todos of the clicked project
+      activeProject.getTodos().forEach((todo) => {
+        renderTodo(todo);
+      });
     });
 };

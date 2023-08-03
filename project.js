@@ -49,5 +49,6 @@ function addNewProject(title) {
   projects.push(newProject);
   renderProject(newProject);
   document.querySelector('input[name="project-title"]').value = "";
+  activeProject = newProject; // Set the active project to the newly created project
   return newProject;
 }
