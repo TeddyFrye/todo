@@ -6,6 +6,8 @@ function renderTodo(todo) {
   // Create a title and dueDate element
   let titleElement = document.createElement("h2");
   let dueDateElement = document.createElement("p");
+  let priorityElement = document.createElement("p");
+  let descriptionElement = document.createElement("p");
 
   // Set the content of the title and dueDate element
   titleElement.textContent = todo.getTitle();
@@ -14,6 +16,8 @@ function renderTodo(todo) {
     .getPriority()
     .toLowerCase()}`;
   dueDateElement.textContent = todo.getDueDate();
+  priorityElement.textContent = todo.getPriority();
+  descriptionElement.textContent = todo.getDescription();
 
   // Add an event listener for 'keypress'
   titleElement.addEventListener("keypress", function (e) {
@@ -29,6 +33,8 @@ function renderTodo(todo) {
   // Append the title and dueDate element to the todoDiv
   todoDiv.appendChild(titleElement);
   todoDiv.appendChild(dueDateElement);
+  todoDiv.appendChild(priorityElement);
+  todoDiv.appendChild(descriptionElement);
 
   // Append the todoDiv to the todo container in your HTML
   document.querySelector("#todo-container").appendChild(todoDiv);
