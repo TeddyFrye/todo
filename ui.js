@@ -63,6 +63,24 @@ function renderTodo(todo) {
   todoDiv.appendChild(priorityElement);
   todoDiv.appendChild(descriptionElement);
 
+  // Create a delete button
+  let deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete Todo";
+
+  // Add an event listener for the delete button
+  deleteButton.addEventListener("click", function (e) {
+    e.stopPropagation(); // Prevent the todo click event from triggering
+
+    // Remove the todo from the active project
+    activeProject.removeTodo(activeProject.getTodos().indexOf(todo));
+
+    // Remove the todo div from the DOM
+    todoDiv.remove();
+  });
+
+  // Append the delete button to the todoDiv
+  todoDiv.appendChild(deleteButton);
+
   // Append the todoDiv to the todo container in your HTML
   document.querySelector("#todo-container").appendChild(todoDiv);
 }
