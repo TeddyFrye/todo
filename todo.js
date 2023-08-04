@@ -75,14 +75,15 @@ function clearTodoInputFields() {
   let todoDescription = document.querySelector(
     'input[name="todo-description"]'
   );
-  let todoDueDate = document.querySelector('input[name="todo-due-date"]');
-  let todoPriority = document.querySelector('input[name="todo-priority"]');
+  //KEEP DUE  DATE BETWEEN TODO INPUTS
+  //let todoDueDate = document.querySelector('input[name="todo-due-date"]');
+  let todoPriority = document.querySelector('select[name="todo-priority"]');
 
   // clear all input fields
   todoTitle.value = "";
   todoDescription.value = "";
-  todoDueDate.value = "";
-  todoPriority.value = "";
+  // todoDueDate.value = "";
+  todoPriority.value = "Medium";
 }
 
 function addNewTodoToProject(project, title, description, dueDate, priority) {

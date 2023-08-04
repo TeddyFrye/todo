@@ -25,7 +25,7 @@ window.onload = function () {
       'input[name="todo-due-date"]'
     ).value;
     let todoPriority = document.querySelector(
-      'input[name="todo-priority"]'
+      'select[name="todo-priority"]'
     ).value;
 
     if (activeProject) {
