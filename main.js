@@ -11,7 +11,7 @@ window.onload = function () {
   );
   defaultProject.addTodo(defaultTodo);
   projects.push(defaultProject);
-
+  activeProject = defaultProject;
   projects.forEach((project) => {
     renderProject(project);
   });
@@ -76,7 +76,7 @@ window.onload = function () {
     let notification = document.createElement("div");
     notification.className = "notification";
     notification.innerText =
-      "Use the sample project as a guide to create your own project! Delete the sample once your own project is made.";
+      "Use the sample project as a guide to create your own project! Click on a project to see the todos";
 
     // Append the notification to the body of the document
     document.body.appendChild(notification);
