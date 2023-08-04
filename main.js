@@ -70,4 +70,40 @@ window.onload = function () {
         renderTodo(todo);
       });
     });
+  // Helpful notification
+  function showNotification() {
+    // Create the notification element
+    let notification = document.createElement("div");
+    notification.className = "notification";
+    notification.innerText =
+      "Use the sample project as a guide to create your own project! Delete the sample once your own project is made.";
+
+    // Style the notification to appear in the top right corner of the page
+    notification.style.position = "absolute";
+    notification.style.top = "10px";
+    notification.style.right = "10px";
+    notification.style.zIndex = "1000"; // Ensure it appears above other elements
+    notification.style.padding = "10px";
+    notification.style.backgroundColor = "#f8d7da"; // Example background color
+    notification.style.color = "#721c24"; // Example text color
+
+    // Append the notification to the body of the document
+    document.body.appendChild(notification);
+
+    // Show the notification after a small delay
+    setTimeout(function () {
+      notification.classList.add("show");
+    }, 1000);
+
+    // Hide the notification after 10 seconds
+    setTimeout(function () {
+      notification.classList.remove("show");
+
+      // Remove the notification from the document after it has been hidden
+      setTimeout(function () {
+        document.body.removeChild(notification);
+      }, 1000);
+    }, 10000);
+  }
+  showNotification();
 };
