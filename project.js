@@ -39,15 +39,40 @@ function createProject(title) {
 function editProject(project, title) {
   project.setTitle(title);
 }
+// Helpful speech bubble
+function showSpeechBubble() {
+  // Create the speech bubble element
+  let bubble = document.createElement("div");
+  bubble.className = "speech-bubble";
+  bubble.innerText = "Triple click any title or information to edit!";
 
-function deleteProject(project) {
-  // ADD CODE HERE TO DELETE THE PROJECT
+  // Append the bubble to the body of the document
+  document.body.appendChild(bubble);
+
+  // Show the bubble after a small delay
+  setTimeout(function () {
+    bubble.classList.add("show");
+  }, 100);
+
+  // Hide the bubble after 10 seconds
+  setTimeout(function () {
+    bubble.classList.remove("show");
+
+    // Remove the bubble from the document after it has been hidden
+    setTimeout(function () {
+      document.body.removeChild(bubble);
+    }, 1000);
+  }, 10000);
 }
 
 function addNewProject(title) {
   let newProject = createProject(title);
   projects.push(newProject);
   renderProject(newProject);
+  // if this is the second project, show the speech bubble
+  if (projects.length === 2) {
+    showSpeechBubble();
+  }
   document.querySelector('input[name="project-title"]').value = "";
   activeProject = newProject; // Set the active project to the newly created project
   return newProject;

@@ -33,3 +33,19 @@
     width: 75%;
 }
   
+.speech-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+}
+
+.speech-bubble.show {
+    opacity: 1;
+}
