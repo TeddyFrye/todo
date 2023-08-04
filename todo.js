@@ -57,7 +57,6 @@ let myTodo = new Todo("My Title", "My Description", "2023-07-30", "High");
 
 //Setter/Getter methods
 myTodo.setTitle("New Title");
-console.log(myTodo.getTitle());
 myTodo.setDescription("New Description");
 
 // Functions to create, edit, and delete todos
