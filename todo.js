@@ -89,7 +89,6 @@ function clearTodoInputFields() {
 function addNewTodoToProject(project, title, description, dueDate, priority) {
   let newTodo = createTodo(title, description, dueDate, priority);
   project.addTodo(newTodo);
-  projects.push(project);
 
   // Render only the new todo
   renderTodo(newTodo);
