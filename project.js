@@ -15,7 +15,7 @@ class Project {
 
   // Setter methods
   setTitle(title) {
-    this.title = title;
+    this.title = title.trim() === "" ? "Untitled" : title;
   }
 
   // Method to add a todo to this project

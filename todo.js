@@ -32,19 +32,20 @@ class Todo {
 
   // Setter methods
   setTitle(title) {
-    this.title = title;
+    this.title = title.trim() === "" ? "Untitled" : title;
   }
 
   setDescription(description) {
-    this.description = description;
+    this.description =
+      description.trim() === "" ? "No description" : description;
   }
 
   setDueDate(dueDate) {
-    this.dueDate = dueDate;
+    this.dueDate = dueDate.trim() === "" ? "No due date" : dueDate;
   }
 
   setPriority(priority) {
-    this.priority = priority;
+    this.priority = priority.trim() === "" ? "No priority" : priority;
   }
 
   setCompletionStatus(isCompleted) {
