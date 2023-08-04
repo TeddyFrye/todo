@@ -91,7 +91,6 @@ window.renderProject = function (project) {
 
   // Add class and click event listener to projectDiv
   projectDiv.classList.add("project");
-  projectDiv.textContent = project.getTitle();
 
   projectDiv.addEventListener("click", function () {
     let detailsDiv = document.getElementById("todo-container");

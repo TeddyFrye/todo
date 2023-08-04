@@ -56,6 +56,11 @@ window.onload = function () {
   document
     .querySelector("#project-container")
     .addEventListener("click", function (e) {
+      let clickedProjectTitle = e.target.textContent;
+      activeProject = projects.find(
+        (project) => project.getTitle() === clickedProjectTitle
+      );
+
       // Clear the todo container
       let todoContainer = document.getElementById("todo-container");
       todoContainer.innerHTML = "";
