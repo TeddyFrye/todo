@@ -1,6 +1,17 @@
 let projects = [];
 let activeProject = null;
 window.onload = function () {
+  // Create a default project and a todo
+  let defaultProject = createProject("Sample Project");
+  let defaultTodo = createTodo(
+    "Sample Todo",
+    "This is a default todo description",
+    "1995-12-27",
+    "Medium"
+  );
+  defaultProject.addTodo(defaultTodo);
+  projects.push(defaultProject);
+
   projects.forEach((project) => {
     renderProject(project);
   });
