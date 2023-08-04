@@ -66,6 +66,8 @@ function renderTodo(todo) {
   // Create a delete button
   let deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete Todo";
+  //Assign a class to the button
+  deleteButton.classList.add("delete-button");
 
   // Add an event listener for the delete button
   deleteButton.addEventListener("click", function (e) {
@@ -153,6 +155,9 @@ window.renderProject = function (project) {
   // Create a Delete button for the project
   let deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete Project";
+
+  //Assign a class to the button
+  deleteButton.classList.add("delete-button");
 
   // Attach a click event listener to the delete button
   deleteButton.addEventListener("click", function (e) {
