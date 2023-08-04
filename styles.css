@@ -67,3 +67,20 @@
     background-color: rgb(184, 184, 184);
     margin: 5px;
 }
+
+.notification {
+    position: absolute;
+    top: 300px;
+    right: 10px;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 1s; /* Transition for showing and hiding */
+    z-index: 1000;
+  }
+  
+  .notification.show {
+    opacity: 1; /* Show when the 'show' class is applied */
+  }
+  
