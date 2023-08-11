@@ -75,7 +75,7 @@ function renderTodo(todo) {
 
     // Remove the todo from the active project
     activeProject.removeTodo(activeProject.getTodos().indexOf(todo));
-
+    
     // Remove the todo div from the DOM
     todoDiv.remove();
   });
